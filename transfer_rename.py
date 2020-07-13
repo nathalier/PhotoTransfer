@@ -2,13 +2,13 @@ from datetime import datetime
 import os
 from pathlib import Path
 import re
-import shutil
 import time
 from settings import settings, DateSource
 
+
 disk_name = 'E'
-base_folder = 'PhotoVideo/New/All/'
-devices = ['Canon', 'LenovoS5Talka']
+base_folder = 'PhotoVideo/'
+devices = ['Canon', 'Lenovo2', 'GoPro']
 
 base_path = Path(f'{disk_name}:/{base_folder}')
 
@@ -27,8 +27,8 @@ def date_from_meta_info(fn):
 	return customized
 
 
+log = []
 for cam in devices:
-	log = []
 	src_dir = 'tmp_' + cam
 	src_path = base_path / src_dir
 	dest_path = base_path
@@ -57,7 +57,7 @@ for cam in devices:
 		except Exception as e:
 			print(x.name + ' error: ', e)
 
-	if log:
-		with open(f'log_{cam}_{time.strftime("%y%m%d_%H%M%S")}{"_pretend" if pretend else ""}.csv',
-		          'w', encoding='utf-8') as f:
-			f.writelines(log)
+if log:
+	with open(f'log_{time.strftime("%y%m%d_%H%M%S")}{"_pretend" if pretend else ""}.csv',
+	          'w', encoding='utf-8') as f:
+		f.writelines(log)

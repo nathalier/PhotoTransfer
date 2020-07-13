@@ -15,16 +15,23 @@ def android_device(dev_name):
 		'extensions': ['jpg', 'mp4'],
 		'transform': lambda time_prefix, file: f'{time_prefix}_{dev_name}{file.suffix}'}
 
+
 settings = {
 	'Canon': {
 		'folder': 'tmp_Canon',
 		'date_source': DateSource.CREAT_DATE,
-		'extensions': ['jpg', 'mov', 'cr2', 'thm'],
+		'extensions': ['jpg', 'mov', 'cr2'],
 		'transform': lambda time_prefix, file: f'{time_prefix}_Canon_{file.name}'
 	},
-	'LenovoS5Talka': android_device('LenovoS5Talka'),
-	'LenovoAndr': android_device('LenovoAndr'),
-	'LenovoIrynka': android_device('LenovoIrynka'),
-	'Android': android_device('other')
+	'Lenovo1': android_device('Lenovo1'),
+	'Lenovo2': android_device('Lenovo2'),
+	'Android': android_device('other'),
+
+	'GoPro': {
+		'folder': 'tmp_GoPro',
+		'date_source': DateSource.MODIF_DATE,
+		'extensions': ['jpg', 'mp4'],
+		'transform': lambda time_prefix, file: f'{time_prefix}_GoPro_{file.name}'
+	},
 
 }
